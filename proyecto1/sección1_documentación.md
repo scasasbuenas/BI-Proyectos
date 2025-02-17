@@ -78,3 +78,69 @@ El uso del modelo de detección de noticias falsas puede implicar varios riesgos
     - Las personas podrían depender demasiado del modelo sin desarrollar pensamiento crítico sobre las noticias que consumen.
     
 Es importante mitigar estos riesgos mediante una continua revisión del modelo, auditorías de equidad y transparencia en su implementación.
+
+#### DECISIONES
+##### ¿Cómo se convierten los resultados del modelo en recomendaciones o decisiones procesables para el usuario final?
+Los resultados del modelo se convierten en recomendaciones o decisiones procesables a través de diferentes enfoques según el beneficiario final. Algunas formas de hacerlo incluyen:
+
+1. **Para medios de comunicación y periodistas:**
+    - Alertas automáticas cuando una noticia tiene alta probabilidad de ser falsa.
+    - Recomendaciones para realizar una verificación manual antes de su publicación.
+    - Generación de un informe con palabras clave o patrones asociados a noticias falsas.
+
+2. **Para plataformas digitales y redes sociales:**
+    - Marcado automático de publicaciones sospechosas para revisión humana.
+    - Reducción del alcance de contenido identificado como desinformación.
+    - Etiquetas informativas para advertir a los usuarios sobre la veracidad de una noticia.
+
+3. **Para gobiernos y organismos reguladores:**
+    - Identificación de campañas de desinformación y actores responsables.
+    - Generación de informes para evaluar el impacto de la desinformación en la opinión pública.
+    - Recomendaciones para lanzar campañas de educación mediática.
+
+4. **Para ciudadanos y consumidores de noticias:**
+    - Creación de herramientas de fact-checking accesibles al público.
+    - Extensiones o aplicaciones que analicen la confiabilidad de fuentes y noticias.
+    - Sugerencias de fuentes confiables para contrastar la información.
+
+#### TAREA DE APRENDIZAJE
+##### ¿Cuál es el tipo de aprendizaje?
+El tipo de aprendizaje utilizado en este proyecto es **aprendizaje supervisado**, ya que el modelo se entrena con un **conjunto de datos etiquetado**, donde cada noticia está clasificada como **falsa o verdadera**. El objetivo del modelo es aprender patrones en el texto que permitan predecir si una noticia nueva es falsa o no, basándose en ejemplos previos con etiquetas conocidas.
+
+##### Si es aprendizaje supervisado, indicar qué se predice.
+El modelo predice si una noticia es falsa o verdadera en función de sus características textuales y lingüísticas.
+
+La variable objetivo (label) es una etiqueta binaria que indica:
+
+    1 → Noticia falsa
+    0 → Noticia verdadera
+    
+El modelo analiza el contenido de las noticias y, con base en patrones aprendidos durante el entrenamiento, asigna una de estas dos categorías a una nueva noticia.
+
+#####  ¿Cuáles son los posibles resultados de la tarea de aprendizaje?
+Verdadero positivo (VP): El modelo identifica correctamente una noticia falsa.
+Falso positivo (FP): El modelo clasifica incorrectamente una noticia verdadera como falsa.
+Verdadero negativo (VN): El modelo identifica correctamente una noticia verdadera.
+Falso negativo (FN): El modelo clasifica incorrectamente una noticia falsa como verdadera.
+
+##### ¿Cuándo se observan los resultados de esta tarea?
+Los resultados del modelo pueden observarse en **distintos momentos**, dependiendo de su implementación y del uso específico:
+
+**1. En tiempo real:**
+- Si el modelo está integrado en una plataforma de noticias o redes sociales, puede analizar y clasificar noticias al instante cuando se publican.
+- Esto permite marcar contenido sospechoso inmediatamente y advertir a los usuarios.
+
+**2. Por lotes (procesamiento periódico):**
+
+- Si el modelo se usa para monitorear tendencias de desinformación en grandes volúmenes de datos, los resultados pueden generarse diaria, semanal o mensualmente.
+- Este enfoque es útil para informes gubernamentales, análisis de campañas de desinformación y toma de decisiones estratégicas.
+
+**3. Previo a la publicación de una noticia:**
+
+- En el caso de medios de comunicación y fact-checkers, el modelo puede aplicarse antes de publicar una noticia, para verificar su veracidad y evitar la difusión de información falsa.
+
+**4. Análisis retrospectivo:**
+
+- El modelo también puede ser utilizado para analizar noticias pasadas y estudiar la evolución de la desinformación en distintos períodos de tiempo.
+
+En nuestro caso específico, estamos hablando más que todo de un anaálisis retrospectivo. Esto debido a que se analizan las noticias, que son pasadas, y se da un recuento de la efectividad del modelo para predecir la veracidad de la información.
