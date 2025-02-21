@@ -373,3 +373,30 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 * **Recolección de retroalimentación:** Evaluación por verificadores de datos para detectar errores o sesgos.
 
 **Tiempo Total Estimado: 9 a 18 semanas** *(Aproximadamente 2 a 4 meses)*
+
+#### Ingeniería de Características
+
+##### ¿Qué variables/características se utilizan en el modelo?
+
+* **Palabras Clave:** Inicialmente, los datos entran al programa separados en tres partes: título (el cual es el título de la noticia),  descripción (el cual es una descripción breve de la noticia), la fecha de publicación y label (el cual indica si la noticia es falsa o no). Sin embargo, luego de transformar el título y la descripción, estos dos elementos se juntan a una sola variable la cual tiene las palabras clave de la noticia, de forma que esta es la única variable que se entrega al modelo para entrenarlo.
+* **label:** Es lo que predice el modelo: Indica si una noticia dada es falsa o verdadera y es de naturaleza binaria.
+
+##### Qué agregaciones o transformaciones se aplican a las fuentes de datos originales – incluir las más importantes -?
+**1. Limpieza de Datos**
+
+* **Eliminar impurezas:** Se eliminan caracteres especiales y se convierten los textos a minúsculas.
+* **Eliminar stopwords:** Se eliminan palabras irrelevantes (stopwords).
+* **Eliminar duplicados:** Se eliminan noticias duplicadas.
+* **Eliminar columnas:** Se eliminan las columnas innecesarias como la fecha y se junta el texto del titulo y descripción en una sola columna.
+
+**2. Tokenización y Normalización**
+
+* **Extraer palabras clave:** Se extraen las palabras clave del Título y la Descripción.
+* **Aplicar lemmatization:** Se lleva las palabras a su palabra raíz.
+* **Aplicar stemming:** Elimina sufijos y prefijos de las palabras, entre otros.
+
+**3. Vectorización de texto**
+
+* **TF IDF (Term Frequency-Inverse Document Frequency):** Se usa TF-IDF  para convertir los textos en representaciones numéricas utilizables por modelos de aprendizaje automático
+
+
