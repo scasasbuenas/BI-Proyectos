@@ -262,7 +262,6 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 * **Accesibilidad desigual:** Solo grandes plataformas podrían usarlo.
   * **Solución:** Versiones accesibles para periodistas y verificadores.
 
-
 #### APRENDIZAJE (USO DEL MODELO)
 
 ##### ¿El uso del modelo es por lotes o en tiempo real?
@@ -277,7 +276,7 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
   * Requiere infraestructura potente para procesar datos rápidamente.
   * Puede generar falsos positivos si el modelo no tiene suficiente contexto.
 
-**2. Uso por Lotes** (Útil para análisis a gran escala) 
+**2. Uso por Lotes** (Útil para análisis a gran escala)
 
 * **Escenario:** Evaluación periódica de grandes volúmenes de noticias, por ejemplo, análisis diario o semanal de medios.
 * **Ventajas: #es necesario mostrar ventajas y desventajas**
@@ -303,15 +302,15 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 
 #### CONSTRUCCIÓN DE MODELOS
 
-##### ¿Cuántos modelos se necesitan? 
+##### ¿Cuántos modelos se necesitan?
 
-**1. Un único modelo de clasificación** *(Enfoque simple y eficiente)*
+**1. Un único modelo de clasificación** 
 
 * **Descripción:** Se entrena un solo modelo supervisado para clasificar noticias como falsas o verdaderas.
 * **Ventaja:** Fácil de entrenar, mantener y desplegar.
 * **Limitación:** Puede no capturar todos los matices de la desinformación.
 
-**2. Modelo principal + modelo de refinamiento** *(Enfoque híbrido para mayor precisión)*
+**2. Modelo principal + modelo de refinamiento**
 
 * **Descripción:**
   * **Modelo 1:** Un clasificador principal (ejemplo: Random Forest o BERT) que predice si una noticia es falsa o verdadera.
@@ -319,7 +318,7 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 * **Ventaja:** Mejora la precisión al combinar diferentes enfoques.
 * **Limitación:** Mayor carga computacional y mantenimiento.
 
-**3. Modelo adaptable con aprendizaje continuo** *(Para adaptación a nuevas noticias falsas)*
+**3. Modelo adaptable con aprendizaje continuo**
 
 * **Descripción:**
   * Se entrena un modelo supervisado inicialmente.
@@ -329,19 +328,19 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 
 ##### ¿Cuándo deben actualizarse?
 
-**1. Actualización basada en rendimiento** *(Cuando la precisión del modelo disminuye)*
+**1. Actualización basada en rendimiento** 
 
 * **Frecuencia:** Cuando se detecta un descenso en métricas clave como **precisión (precision), recall o F1-score** en datos recientes.
 * **Razón:** La desinformación evoluciona, y un modelo entrenado con datos antiguos puede volverse obsoleto.
 * **Método:** Se recolectan nuevas noticias etiquetadas y se reentrena el modelo con datos más actualizados.
 
-**2. Actualización periódica programada** *(Mantenimiento regular del modelo)*
+**2. Actualización periódica programada** 
 
 * **Frecuencia:** Cada  **3 a 6 meses** , dependiendo de la velocidad con la que cambian las noticias falsas.
 * **Razón:** Asegurar que el modelo sigue aprendiendo de nuevas tendencias y no pierde efectividad con el tiempo.
 * **Método:** Se recopilan nuevas noticias, se validan las etiquetas y se realiza un reentrenamiento.
 
-**3. Actualización por eventos críticos** *(En respuesta a cambios bruscos en la desinformación)*
+**3. Actualización por eventos críticos** 
 
 * **Frecuencia:** Cuando ocurre un evento que cambia drásticamente el tipo de desinformación (ejemplo: elecciones, crisis sanitarias, conflictos internacionales).
 * **Razón:** Los patrones de desinformación pueden cambiar rápidamente en eventos específicos.
