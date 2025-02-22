@@ -1,4 +1,4 @@
-# Descripción general de resultados
+# mDescripción general de resultados
 
 ## Regresión logística
 
@@ -108,9 +108,11 @@ El  **ajuste del umbral de 0.5 a 0.6 mejoró significativamente la precisión y 
 2. Minimiza la propagación de noticias falsas sin censurar en exceso noticias legítimas.
 3. Mejora la utilidad del sistema para la organización y su impacto en la lucha contra la desinformación.
 
+---
+
+
 
 ## **Red neuronal**
-
 
 Se usó una red neuronal con un umbral de **0.5** para clasificar las noticias **falsas y verdaderas**. Los resultados muestran un **buen rendimiento** con un **balance entre precisión y recall**.
 
@@ -167,6 +169,38 @@ El **umbral de clasificación** es el valor a partir del cual el modelo decide s
 
 En el caso puntual de este proyecto, el umbral utilizado es de 0.65.
 
+#### ¿Cómo afectó esto al modelo?
+
+**Comparación antes y después del cambio de umbral:**
+
+| **Métrica**                         | **Antes (Umbral 0.5)** | **Después (Umbral 0.65)** |
+| ------------------------------------------ | ---------------------------- | -------------------------------- |
+| Exactitud                                  | 87.31%                       | 87.31%                           |
+| Precisión (Clase 0 - Noticias Falsas)     | 84%                          | 85%                              |
+| Precisión (Clase 1 - Noticias Verdaderas) | 89%                          | 89%                              |
+| Recall (Clase 0 - Noticias Falsas)         | 84%                          | 85%                              |
+| Recall (Clase 1 - Noticias Verdaderas)     | 90%                          | 89%                              |
+| F1-Score (Clase 0 - Noticias Falsas)       | 84%                          | 85%                              |
+| F1-Score (Clase 1 - Noticias Verdaderas)   | 89%                          | 89%                              |
+
+Al hacer la comparación de los umbrales, se puede ver una mejora en la precisión de noticias flasas pasando del 84% al 85% lo que indica que el modelo redujo los falsos positivos y clasificó con mayor exactitud las noticias falsas. Adicionalmente, se mejoró un poco el recall de las noticias falsas, aumentando también del 84% al 85% lo que indica que el modelo identificó mejor las noticias falsas. Sin embargo el recall de las noticias verdaderas bajó del 90% al 89% lo que nos indica que  que algunas se aumentó la cantidad de noticias verdaderas que fueron clasificadas erroneamente. La exactitud del modelo se mantuvo igual lo que indica que el modelo tiene un desempeño igual en ambos casos. El F1 score aumentó del 84% al 85% mostrando un mejor equilibrio entre precisión y recall.
+
+
+#### Conclusiones generales
+
+**¿Es este modelo adecuado?** - Sí, aunque el modelo no tiene unos resultados tan buenos como el de regresión, este tiene un buen equilibrio entre precisión y recall con una exactitud del 87.31% y un F1-score sólido lo que permite una detección confiable entre ambas clases. 
+
+**¿Debería ajustarse más?** - Si la prioridad es reducir la cantidad de noticias falasas no detectadas se podría bajar el umbral para mejorar el recall en la clase 0 de noticias falsas pero podría aumentar la cantidad de falsos positivos. Si la prioridad es evitar que las noticias legitimas pasen como falsas, mantener el umbral de decisión es una buena opción.
+
+**¿Es útil para la organización?** -  Sí, y aque el modelo automatiza la detección de noticias falsas reduciendo así la carga operativa en la verificación manual de noticias.
+
+
+#### Conslusiones sobre el ajuste del umbral
+
+El ajuste del umbral mejoró la precisión en la detección de noticias, reduciendo falsos positivos y evitando clasificar noticias verdaderas como falsas. Sin embargo el recall de las noticias verdaderas disminuyó levemente lo que nos indica que algunas noticias legítimas fueron clasificadas erróneamente como falsas. 
+
+
+
 ## Árbol de decisión
 
 ### ¿Cómo funciona un árbol de decisión?
@@ -183,10 +217,10 @@ Los hiperparámetros son elementos que determinan el funcionamiento de un árbol
 
 | **Métrica**                | **Antes (Umbral 0.5)** | **Después (Umbral 0.6)** |
 | --------------------------------- | ---------------------------- | ------------------------------- |
-| Precisión (Clase 0 - Falsas)     | 99%                          | 97%                         |
+| Precisión (Clase 0 - Falsas)     | 99%                          | 97%                             |
 | Precisión (Clase 1 - Verdaderas) | 67%                          | 80% ⬆                          |
 | Recall (Clase 0 - Falsas)         | 32%                          | 65% ⬆                          |
-| Recall (Clase 1 - Verdaderas)     | 100%                          | 99%                         |
+| Recall (Clase 1 - Verdaderas)     | 100%                         | 99%                             |
 | F1-Score (Clase 0 - Falsas)       | 48%                          | 78% ⬆                          |
 | F1-Score (Clase 1 - Verdaderas)   | 80%                          | 88% ⬆                          |
 | Exactitud (Accuracy)              | 71%                          | 85% ⬆                          |
@@ -204,17 +238,18 @@ Al reducir los falsos positivos, se disminuye la probabilidad de que una noticia
 El cambio de los hiperparametros dio a un mayor un equilibrio entre la precisión y el recall y en la predicción de ambos tipos de noticia Esto asegura que la herramienta sea más confiable y pueda integrarse en flujos de trabajo de verificación sin generar demasiados errores.
 
 ### Análisis árbol final
+
 Para el árbol de decisión de tipo gini con 20 niveles de profundidad los resultados muestran un rendimiento decente, con un recall un poco peor que la precisión:
 
-| *Métrica* | *Valor* |
-| --- | --- |
-| Exactitud | 85.00% |
-| Precisión (Clase 0 - Noticias Falsas) | 97% |
-| Precisión (Clase 1 - Noticias Verdaderas) | 80% |
-| Recall (Clase 0 - Noticias Falsas) | 65% |
-| Recall (Clase 1 - Noticias Verdaderas) | 99% |
-| F1-Score (Clase 0 - Noticias Falsas) | 78% |
-| F1-Score (Clase 1 - Noticias Verdaderas) | 88% |
+| *Métrica*                               | *Valor* |
+| ------------------------------------------ | --------- |
+| Exactitud                                  | 85.00%    |
+| Precisión (Clase 0 - Noticias Falsas)     | 97%       |
+| Precisión (Clase 1 - Noticias Verdaderas) | 80%       |
+| Recall (Clase 0 - Noticias Falsas)         | 65%       |
+| Recall (Clase 1 - Noticias Verdaderas)     | 99%       |
+| F1-Score (Clase 0 - Noticias Falsas)       | 78%       |
+| F1-Score (Clase 1 - Noticias Verdaderas)   | 88%       |
 
 *Resumen*
 
@@ -225,7 +260,7 @@ Para el árbol de decisión de tipo gini con 20 niveles de profundidad los resul
 
 ### Análisis de la matriz de confusión
 
-![arbol.png](image/seccion4_resultados/image_2025-02-22_095954186.png)
+![image.png](attachment:bd9d2c0d-d464-4b44-aee9-0c908fab53a8.png)
 
 - *3,130* noticias *falsas* fueron *correctamente identificadas* como *falsas* (*Verdaderos Negativos - TN*).
 - *6548* noticias *verdaderas* fueron *correctamente clasificadas* como *verdaderas* (*Verdaderos Positivos - TP*).
@@ -247,4 +282,3 @@ Las métricas que se obtuvieron muestran que el modelo es decente para mostrar l
 #### Riesgos y consideraciones
 
 El mayor riesgo el modelo es la gran cantidad de falsos positivos, pues puede significar que una parte considerable de las noticias publicadas sean falsas, de forma que se le recomienda al negocio volver a revisar una parte de las noticias verdaderas para bajar la probabilidad de que esto suceda considerablemente
-
