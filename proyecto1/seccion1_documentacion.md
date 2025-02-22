@@ -185,14 +185,14 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
      * Riesgo de que el sistema sea visto como sesgado o parcial.
      * Potencial demanda legal por parte de los medios o periodistas afectados.
    * **Beneficio:**
-     * Reduce el riesgo de que una noticia dudosa sea aceptada como real, aunque con el costo de posibles errores.#
+     * Reduce el riesgo de que una noticia dudosa sea aceptada como real, aunque con el costo de posibles errores.
 2. **Falso Negativo (FN): No detectar una noticia falsa**
    * **Costo:**
      * La desinformación sigue circulando y puede influir en la opinión pública.
      * Potencial impacto en elecciones, políticas públicas y estabilidad social.
      * Pérdida de confianza en los sistemas de detección si se filtran muchas noticias falsas.
    * **Beneficio:**
-     * Se evita la censura excesiva, pero a costa de permitir la difusión de información dañina.#
+     * Se evita la censura excesiva, pero a costa de permitir la difusión de información dañina.
 
 ##### ¿Cuáles son los criterios de éxito del modelo para su posterior despliegue?
 
@@ -215,7 +215,6 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 **3. Interpretabilidad y Explicabilidad**
 
 * **Explicabilidad del modelo:**
-  * Uso de técnicas como SHAP#o LIME# para entender qué palabras o patrones llevan a clasificar una noticia como falsa.
   * Generación de informes interpretables para verificadores de datos.
 * **Confianza en las predicciones:**
   * Evitar modelos de "caja negra" que no permitan justificar decisiones.
@@ -269,7 +268,7 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 **1. Uso en Tiempo Real** (Recomendado para plataformas digitales y verificadores de noticias)
 
 * **Escenario:** Verificación instantánea de noticias en redes sociales, medios digitales o plataformas de fact-checking.
-* **Ventajas: #es necesario mostrar ventajas y desventajas**
+* **Ventajas:**
   * Detecta noticias falsas en el momento en que se publican.
   * Permite alertar a usuarios y verificadores en tiempo real.
 * **Desafíos:**
@@ -279,7 +278,7 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 **2. Uso por Lotes** (Útil para análisis a gran escala)
 
 * **Escenario:** Evaluación periódica de grandes volúmenes de noticias, por ejemplo, análisis diario o semanal de medios.
-* **Ventajas: #es necesario mostrar ventajas y desventajas**
+* **Ventajas:**
   * Permite revisar noticias con más contexto y precisión.
   * Menos demanda de recursos computacionales en comparación con tiempo real.
 * **Desafíos:**
@@ -304,7 +303,7 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 
 ##### ¿Cuántos modelos se necesitan?
 
-**1. Un único modelo de clasificación** 
+**1. Un único modelo de clasificación**
 
 * **Descripción:** Se entrena un solo modelo supervisado para clasificar noticias como falsas o verdaderas.
 * **Ventaja:** Fácil de entrenar, mantener y desplegar.
@@ -328,51 +327,51 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 
 ##### ¿Cuándo deben actualizarse?
 
-**1. Actualización basada en rendimiento** 
+**1. Actualización basada en rendimiento**
 
 * **Frecuencia:** Cuando se detecta un descenso en métricas clave como **precisión (precision), recall o F1-score** en datos recientes.
 * **Razón:** La desinformación evoluciona, y un modelo entrenado con datos antiguos puede volverse obsoleto.
 * **Método:** Se recolectan nuevas noticias etiquetadas y se reentrena el modelo con datos más actualizados.
 
-**2. Actualización periódica programada** 
+**2. Actualización periódica programada**
 
 * **Frecuencia:** Cada  **3 a 6 meses** , dependiendo de la velocidad con la que cambian las noticias falsas.
 * **Razón:** Asegurar que el modelo sigue aprendiendo de nuevas tendencias y no pierde efectividad con el tiempo.
 * **Método:** Se recopilan nuevas noticias, se validan las etiquetas y se realiza un reentrenamiento.
 
-**3. Actualización por eventos críticos** 
+**3. Actualización por eventos críticos**
 
 * **Frecuencia:** Cuando ocurre un evento que cambia drásticamente el tipo de desinformación (ejemplo: elecciones, crisis sanitarias, conflictos internacionales).
 * **Razón:** Los patrones de desinformación pueden cambiar rápidamente en eventos específicos.
 * **Método:** Se recopilan datos recientes del evento y se ajusta el modelo en función de estos nuevos patrones.
 
-##### ¿De cuánto tiempo se dispone para generar el modelo (incluido el proceso de ingeniería de características y el análisis o evaluación del mismo)? #No me convence esto ¿ponemos 1 semana?
+##### ¿De cuánto tiempo se dispone para generar el modelo (incluido el proceso de ingeniería de características y el análisis o evaluación del mismo)? 
 
-**1. Entendimiento y Preparación de Datos***(2 a 4 semanas)*
+##### **1. Entendimiento y Preparación de Datos (1 dia)**
 
 * **Perfilado de datos:** Identificación de calidad, sesgos y distribución de clases.
 * **Limpieza y preprocesamiento:** Eliminación de ruido, tokenización, lematización y eliminación de palabras irrelevantes.
 * **Ingeniería de características:** Creación de representaciones del texto.
 
-**2. Construcción y Entrenamiento del Modelo** *(3 a 6 semanas)*
+**2. Construcción y Entrenamiento de los Modelos (2 dias)**
 
 * **Selección de algoritmos:** Prueba de modelos.
 * **Entrenamiento y ajuste de hiperparámetros:** Optimización del modelo.
 * **Evaluación inicial:** Medición de métricas como  **accuracy, precision, recall, F1-score y AUC-ROC** .
 
-**3. Validación y Evaluación del Modelo** *(2 a 4 semanas)*
+**3. Validación y Evaluación del Modelo (0.5 dias)**
 
 * **Prueba en datos no vistos:** Evaluación del modelo con datos recientes para medir su capacidad de generalización.
 * **Ajuste de umbrales:** Optimización para minimizar falsos positivos y negativos.
 * **Explicabilidad del modelo:** Uso de SHAP, LIME o análisis de palabras clave para asegurar transparencia.
 
-**4. Implementación y Monitoreo Inicial** *(2 a 4 semanas)*
+**4. Implementación y Monitoreo Inicial (0.5 dias)**
 
 * **Despliegue en un entorno de prueba:** Validación del modelo en una aplicación real o API.
 * **Monitoreo de desempeño:** Seguimiento de métricas en uso real para detectar necesidad de ajustes.
 * **Recolección de retroalimentación:** Evaluación por verificadores de datos para detectar errores o sesgos.
 
-**Tiempo Total Estimado: 9 a 18 semanas** *(Aproximadamente 2 a 4 meses)*
+**Tiempo Total Estimado: 4 o 5 dias**
 
 #### Ingeniería de Características
 
@@ -382,6 +381,7 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 * **label:** Es lo que predice el modelo: Indica si una noticia dada es falsa o verdadera y es de naturaleza binaria.
 
 ##### Qué agregaciones o transformaciones se aplican a las fuentes de datos originales – incluir las más importantes -?
+
 **1. Limpieza de Datos**
 
 * **Eliminar impurezas:** Se eliminan caracteres especiales y se convierten los textos a minúsculas.
@@ -398,5 +398,3 @@ En nuestro caso específico, estamos hablando más que todo de un anaálisis ret
 **3. Vectorización de texto**
 
 * **TF IDF (Term Frequency-Inverse Document Frequency):** Se usa TF-IDF  para convertir los textos en representaciones numéricas utilizables por modelos de aprendizaje automático
-
-
