@@ -166,3 +166,85 @@ El **umbral de clasificación** es el valor a partir del cual el modelo decide s
   * **Si la probabilidad es < 0.5** , la noticia se clasifica como **falsa** .
 
 En el caso puntual de este proyecto, el umbral utilizado es de 0.65.
+
+## Árbol de decisión
+
+### ¿Cómo funciona un árbol de decisión?
+
+Un árbol de decisión agrupa los datos en un nodo, y los va filtrando por sus caracteristicas. Por ejemplo: un árbol simple de 2 niveles para determinar si un estudiante pasó la materia. En el primer nodo están todos los datos, y para los siguientes se establece la condición de que la nota debe estar por encima de 3. Si el dato cumple la condición, se manda a la hoja derecha, si no, a la izquierda. En las hojas finales el árbol determina si la mayoría de datos son de estudiantes que pasaron la materia, y si es el caso marca la hoja como estudiantes que pasaron la materia. De lo contrario, marca lo opuesto. Luego cuando nuevos datos entren, estos recorrerán el árbol y serán etiquetados con la marca que tenga la hoja en donde caigan.
+
+#### ¿Qué son los hiperparámetros?
+
+Los hiperparámetros son elementos que determinan el funcionamiento de un árbol. En este caso se usan niveles de profundidad (que indica hasta que altura se termina el árbol) y el tipo (que puede ser gini o entropy e indican la forma en que el árbol se va a repartir). Al inicio, se usa un árbol con 4 niveles de profundidad y de tipo entropy. Luego se hace una búsqueda de GridSearch que encuentra la mejor combinación de hiperparámetros, lo cual nos muestra que la mejor configuración es un árbol con 20 niveles de profundidad y de tipo gini.
+
+#### Mejora con los nuevos hiperparametros
+
+**Comparación antes y después del cambio de hiperparametros:**
+
+| **Métrica**                | **Antes (Umbral 0.5)** | **Después (Umbral 0.6)** |
+| --------------------------------- | ---------------------------- | ------------------------------- |
+| Precisión (Clase 0 - Falsas)     | 99%                          | 97%                         |
+| Precisión (Clase 1 - Verdaderas) | 67%                          | 80% ⬆                          |
+| Recall (Clase 0 - Falsas)         | 32%                          | 65% ⬆                          |
+| Recall (Clase 1 - Verdaderas)     | 100%                          | 99%                         |
+| F1-Score (Clase 0 - Falsas)       | 48%                          | 78% ⬆                          |
+| F1-Score (Clase 1 - Verdaderas)   | 80%                          | 88% ⬆                          |
+| Exactitud (Accuracy)              | 71%                          | 85% ⬆                          |
+
+Notamos que el modelo resulta balanceado mucho mejor, pues los resultados del primer árbol mostraban que el recall de las noticias falsas se daba porque la gran mayoria de noticias eran marcadas como verdaderas, lo que daba buenos puntajes en el recall de las verdaderas y malos en su precisión. Al realizar estos cambios a pesar de que las métricas de las noticias verdaderas bajaron un poco, las de las noticias falsas mejoran a gran medidad.
+
+#### Impacto de cambiar el umbral en términos de beneficios para la organización
+
+**1. Mayor confianza en la detección de noticias falsas**
+
+Al reducir los falsos positivos, se disminuye la probabilidad de que una noticia falsa sea considerada verdadera. Esto puede ayudar a la organización a combatir la desinformación de una forma más efectiva.
+
+**3. Mejor rendimiento general**
+
+El cambio de los hiperparametros dio a un mayor un equilibrio entre la precisión y el recall y en la predicción de ambos tipos de noticia Esto asegura que la herramienta sea más confiable y pueda integrarse en flujos de trabajo de verificación sin generar demasiados errores.
+
+### Análisis árbol final
+Para el árbol de decisión de tipo gini con 20 niveles de profundidad los resultados muestran un rendimiento decente, con un recall un poco peor que la precisión:
+
+| *Métrica* | *Valor* |
+| --- | --- |
+| Exactitud | 85.00% |
+| Precisión (Clase 0 - Noticias Falsas) | 97% |
+| Precisión (Clase 1 - Noticias Verdaderas) | 80% |
+| Recall (Clase 0 - Noticias Falsas) | 65% |
+| Recall (Clase 1 - Noticias Verdaderas) | 99% |
+| F1-Score (Clase 0 - Noticias Falsas) | 78% |
+| F1-Score (Clase 1 - Noticias Verdaderas) | 88% |
+
+*Resumen*
+
+- El modelo presenta una precisión del 97% para las noticias falsas, indicando que clasifica adecuadamente las noticias que en realidad son falsas, sin embargo, el recall es de tan solo 65%, lo que muestra que en realidad una gran parte de las veces falla en identificar as noticias falsas.
+- Presenta una precisión del 80% para las noticias verdaderas, dando la etiqueta de noticias verdaderas a las que si lo son.
+- El modelo presenta un recall del 85% mostrando que la mayoría de las noticias verdaderas están correctamente identificadas.
+- El F1 score de las noticias falsas es del 78% y del 88% para las noticias verdaderas mostrando un desbalance entre la precisión y el recall en la detección de noticias falsas mostrando que a pesar de funcionar el mayoría de casos, el modelo no resulta ser mejor cuando es comparado con los modelos anteriores.
+
+### Análisis de la matriz de confusión
+
+![image.png](attachment:bd9d2c0d-d464-4b44-aee9-0c908fab53a8.png)
+
+- *3,130* noticias *falsas* fueron *correctamente identificadas* como *falsas* (*Verdaderos Negativos - TN*).
+- *6548* noticias *verdaderas* fueron *correctamente clasificadas* como *verdaderas* (*Verdaderos Positivos - TP*).
+- *84* noticias *verdaderas* fueron *clasificadas erróneamente* como *falsas* (*Falsos Negativos - FN*).
+- *1651* noticias *falsas* fueron *clasificadas erróneamente* como *verdaderas* (*Falsos Positivos - FP*).
+
+#### Conclusiones sobre la matriz de confusión
+
+El modelo a pesar de mostrar un rendimiento decente, parece indicar que la mayoría de noticias son verdaderas sin er necesariamente el caso. Por lo tanto, se determina que el modelo resulta adecuado para ciertos casos y es bueno para dar a grandes rasgos conclusiones sobre una noticia, sin embargo, se recomienda hacer uso de los otros modelos o revisar manualmente las noticias para tener más exactitud sobre la verdadera naturaleza de una noticia.
+
+### ¿Cómo aportan estas métricas a los objetivos del negocio?
+
+Las métricas muestran que a pesar de ser un modelo decente, el negocio no puede tomar las predicciones del modelo como reales. Se espera que el negocio revise nuevamente parte de las noticias que fueron marcadas como verdaderas para verificar su veracidad.
+
+#### Impacto positivo en la organización
+
+Las métricas que se obtuvieron muestran que el modelo es decente para mostrar la naturaleza en general de una noticia, lo cual se espera que ayude a discernir a grandes rasgos las noticias falsas. Esto puede ayudar en la toma de decisiones cuando se quiere publicar un articulo.
+
+#### Riesgos y consideraciones
+
+El mayor riesgo el modelo es la gran cantidad de falsos positivos, pues puede significar que una parte considerable de las noticias publicadas sean falsas, de forma que se le recomienda al negocio volver a revisar una parte de las noticias verdaderas para bajar la probabilidad de que esto suceda considerablemente
+
