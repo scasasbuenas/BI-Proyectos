@@ -225,7 +225,7 @@ Para el árbol de decisión de tipo gini con 20 niveles de profundidad los resul
 
 ### Análisis de la matriz de confusión
 
-![image.png](attachment:bd9d2c0d-d464-4b44-aee9-0c908fab53a8.png)
+![arbol.png](image/seccion4_resultados/image_2025-02-22_095954186.png)
 
 - *3,130* noticias *falsas* fueron *correctamente identificadas* como *falsas* (*Verdaderos Negativos - TN*).
 - *6548* noticias *verdaderas* fueron *correctamente clasificadas* como *verdaderas* (*Verdaderos Positivos - TP*).
