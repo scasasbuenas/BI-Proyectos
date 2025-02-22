@@ -108,47 +108,61 @@ El  **ajuste del umbral de 0.5 a 0.6 mejoró significativamente la precisión y 
 2. Minimiza la propagación de noticias falsas sin censurar en exceso noticias legítimas.
 3. Mejora la utilidad del sistema para la organización y su impacto en la lucha contra la desinformación.
 
-## Red neuronal
 
-Se usó una red neuronal con un umbral de 0.6 para clasificar las noticias falsas y verdaderas. Los resultados muestran un buen rendimiento con un balance entre precisión y recall
+## **Red neuronal**
+
+
+Se usó una red neuronal con un umbral de **0.5** para clasificar las noticias **falsas y verdaderas**. Los resultados muestran un **buen rendimiento** con un **balance entre precisión y recall**.
 
 | **Métrica**                         | **Valor** |
 | ------------------------------------------ | --------------- |
 | Exactitud                                  | 87.31%          |
-| Precisión (Clase 0 - Noticias Falsas)     | 85%             |
+| Precisión (Clase 0 - Noticias Falsas)     | 84%             |
 | Precisión (Clase 1 - Noticias Verdaderas) | 89%             |
-| Recall (Clase 0 - Noticias Falsas)         | 85%             |
-| Recall (Clase 1 - Noticias Verdaderas)     | 89%             |
-| F1-Score (Clase 0 - Noticias Falsas)       | 85%             |
+| Recall (Clase 0 - Noticias Falsas)         | 84%             |
+| Recall (Clase 1 - Noticias Verdaderas)     | 90%             |
+| F1-Score (Clase 0 - Noticias Falsas)       | 84%             |
 | F1-Score (Clase 1 - Noticias Verdaderas)   | 89%             |
 
-**Resumen**
+### **Resumen**
 
-* El modelo presenta una precisión del 85% para las noticias falsas, indicando que clasifica adecuadamente las noticias que en realidad son falsas.
-* Presenta una precisión del 89% para las noticias verdaderas, dandole la etiqueta de noticias verdaderas a las que si lo son.
-* El modelo presenta un recall del 85% para las noticias falsas dejando pasar una pequeña cantidad de noticias falsas como verdaderas.
-* El modelo presenta un recall del 89% mostrando que la mayoría de las noticias verdaderas están correctamente identificadas.
-* El F1 score de las noticias falsas es del 85% y del 89% para las noticias verdaderas mostrando un balance entre la precisión y el recall en la detección de noticias falsas mostrando un muy buen rendimiento en la identificación de noticias legitimas.
+- El modelo presenta una precisión del **84%** para las noticias falsas, indicando que clasifica adecuadamente las noticias que en realidad son falsas.
+- Presenta una precisión del **89%** para las noticias verdaderas, asignando correctamente la etiqueta de noticias verdaderas a las que sí lo son.
+- El modelo presenta un recall del **84%** para las noticias falsas, dejando pasar una pequeña cantidad de noticias falsas como verdaderas.
+- El modelo presenta un recall del **90%**, mostrando que la mayoría de las noticias verdaderas están correctamente identificadas.
+- El **F1-score** de las noticias falsas es del **84%** y del **89%** para las noticias verdaderas, mostrando un **buen balance entre precisión y recall**, con un **sólido rendimiento en la identificación de noticias legítimas**.
 
-### Análisis de la matriz de confusión
+### **Análisis de la matriz de confusión**
 
-* **4,080** noticias **falsas** fueron **correctamente identificadas** como **falsas** ( **Verdaderos Negativos - TN** ).
-* **5,886** noticias **verdaderas** fueron **correctamente clasificadas** como **verdaderas** ( **Verdaderos Positivos - TP** ).
-* **746** noticias **verdaderas** fueron **clasificadas erróneamente** como **falsas** ( **Falsos Negativos - FN** ).
-* **701** noticias **falsas** fueron **clasificadas erróneamente** como **verdaderas** ( **Falsos Positivos - FP** ).
+![1740236185122](image/seccion4_resultados/1740236185122.png)
 
-### Conclusiones
+- **4,021** noticias **falsas** fueron **correctamente identificadas** como **falsas** (**Verdaderos Negativos - TN**).
+- **5,998** noticias **verdaderas** fueron **correctamente clasificadas** como **verdaderas** (**Verdaderos Positivos - TP**).
+- **634** noticias **verdaderas** fueron **clasificadas erróneamente** como **falsas** (**Falsos Negativos - FN**).
+- **760** noticias **falsas** fueron **clasificadas erróneamente** como **verdaderas** (**Falsos Positivos - FP**).
 
-La red neuronal mostró un buen equilibrio y recall con una exactitud del 87.31%. Los resultados de la matriz de confusión muestra que la mayoría de noticias fueron clasificadas correctamentamente. El modelo permite identificar adecuadamente las noticias falsas lo que permite que sea implementado para ayudar a reducir la propagación de la desinformación en un contexto general. Sin embargo, al tener una cifra considerablefalsos positivos y falsos negativos, el modelo no se recomienda usar para contextos donde es crítico la identificación de noticias falsas.
+### **Conclusiones**
 
-### ¿Cómo aportan estas métricas a los objetivos del negocio?
+La red neuronal mostró un **buen equilibrio entre precisión y recall**, con una **exactitud del 87.31%**. La matriz de confusión indica que **la mayoría de las noticias fueron clasificadas correctamente**, lo que confirma que el modelo **puede ser implementado para reducir la propagación de la desinformación**. Sin embargo, el número de **falsos positivos (760) y falsos negativos (634)** sugiere que **aún existe un margen de error considerable**, por lo que el modelo no es recomendable para **contextos donde la detección de noticias falsas es crítica** y requiere una **precisión extremadamente alta**.
 
-Las métricas que se obtuveron muestran un modelo equilibrado y confiable en la detección de noticias falsas, permitiendo a la organización automatizar este proceso para reducir la propagación de desinformación.
+### **¿Cómo aportan estas métricas a los objetivos del negocio?**
 
-### Impacto positivo en la organización
+Las métricas obtenidas reflejan un **modelo confiable y equilibrado** en la detección de noticias falsas, lo que permite a la organización **automatizar el proceso de verificación** y **reducir la propagación de desinformación**. Con una precisión alta y un recall optimizado, se logra un sistema que **mejora la calidad de la información en plataformas digitales**.
 
-Si el modelo es implementado, este ayudaría a mejorar la confianza en la información publicada en plataformas digitales evitando la difusión de contenido engañoso y disminuyendo la carga de trabajo en los procesos de verificación que tiene que hacer el personal.
+### **Impacto positivo en la organización**
 
-### Riesgos y consideraciones
+Si el modelo es implementado, ayudaría a **mejorar la confianza en la información publicada en plataformas digitales**, reduciendo la **difusión de contenido engañoso** y **optimizando los recursos en la verificación de noticias**. Además, facilitaría la **detección temprana de desinformación** en medios de comunicación y redes sociales.
 
-El riesgo principal radica en la presencia de los falsos negativos (746 casos) lo que significa que aún hay una cantidad considerable de noticias falsas que pueden ser clasificadas erroneamente como verdaderas y difundirse.
+### **Riesgos y consideraciones**
+
+El principal riesgo radica en la presencia de **falsos negativos (634 casos)**, lo que significa que **algunas noticias falsas pueden ser clasificadas erróneamente como verdaderas y difundirse**. También, los **falsos positivos (760 casos)** pueden afectar la credibilidad de algunas noticias legítimas. Para mitigar estos riesgos, se recomienda **ajustar el umbral de clasificación, mejorar el conjunto de entrenamiento y complementar la detección automatizada con revisiones humanas** en casos de alta incertidumbre.
+
+#### ¿Qué significa cambiar el umbral?
+
+El **umbral de clasificación** es el valor a partir del cual el modelo decide si una noticia es  **falsa (0) o verdadera (1).** Como el modelo de regresión logística utiliza **clasificación binaria**, este genera una **probabilidad** entre **0 y 1** de que una una noticia sea verdadera.
+
+* Por defecto, el umbral es **0.5**, lo que significa:
+  * **Si la probabilidad es ≥ 0.5** , la noticia se clasifica como **verdadera** .
+  * **Si la probabilidad es < 0.5** , la noticia se clasifica como **falsa** .
+
+En el caso puntual de este proyecto, el umbral utilizado es de 0.65.
