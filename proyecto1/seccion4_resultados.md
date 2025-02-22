@@ -276,3 +276,17 @@ Las métricas que se obtuvieron muestran que el modelo es decente para mostrar l
 #### Riesgos y consideraciones
 
 El mayor riesgo el modelo es la gran cantidad de falsos positivos, pues puede significar que una parte considerable de las noticias publicadas sean falsas, de forma que se le recomienda al negocio volver a revisar una parte de las noticias verdaderas para bajar la probabilidad de que esto suceda considerablemente
+
+# Análisis de Palabras
+
+## En cuanto a los títulos de las noticias
+
+![1740239500370](image/seccion4_resultados/1740239500370.png)
+
+## En cuanto a las descripciones de las noticias
+
+![1740241991460](image/seccion4_resultados/1740241991460.png)
+
+## ¿Cómo ayuda esto a la organización?
+
+El análisis de las palabras más frecuentes en los títulos y descripciones de las noticias revela patrones lingüísticos clave que permiten identificar posibles noticias falsas. En los títulos, se ven términos relacionados con  figuras políticas, partidos y eventos controversiales , muchas veces acompañados de palabras como  *"nuevo"* ,  *"cambio"* , o  *"pidió"* , que pueden ser indicios de  titulares sensacionalistas o manipulativos . En las descripciones, palabras como  *"asegura"* ,  *"último"* ,  *"hecho"* ,  *"fiscalía"* , y *"justicia"* resaltan el uso de  citas de autoridad y términos jurídicos , estrategias comunes en la desinformación para  dar credibilidad a información falsa o tergiversada. Para la organización, esta información es crucial porque permite  entrenar modelos de IA más precisos , desarrollar  herramientas de detección automatizada de desinformación , y anticiparse a  tendencias de manipulación mediática . Además, facilita la creación de estrategias de mitigación contra la propagación de noticias falsas, mejorando la capacidad de análisis y respuesta ante campañas de desinformación dirigidas a la opinión pública.
