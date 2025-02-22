@@ -107,3 +107,48 @@ El  **ajuste del umbral de 0.5 a 0.6 mejoró significativamente la precisión y 
 1. El modelo ahora es más confiable y preciso.
 2. Minimiza la propagación de noticias falsas sin censurar en exceso noticias legítimas.
 3. Mejora la utilidad del sistema para la organización y su impacto en la lucha contra la desinformación.
+
+## Red neuronal
+
+Se usó una red neuronal con un umbral de 0.6 para clasificar las noticias falsas y verdaderas. Los resultados muestran un buen rendimiento con un balance entre precisión y recall
+
+| **Métrica**                         | **Valor** |
+| ------------------------------------------ | --------------- |
+| Exactitud                                  | 87.31%          |
+| Precisión (Clase 0 - Noticias Falsas)     | 85%             |
+| Precisión (Clase 1 - Noticias Verdaderas) | 89%             |
+| Recall (Clase 0 - Noticias Falsas)         | 85%             |
+| Recall (Clase 1 - Noticias Verdaderas)     | 89%             |
+| F1-Score (Clase 0 - Noticias Falsas)       | 85%             |
+| F1-Score (Clase 1 - Noticias Verdaderas)   | 89%             |
+
+**Resumen**
+
+* El modelo presenta una precisión del 85% para las noticias falsas, indicando que clasifica adecuadamente las noticias que en realidad son falsas.
+* Presenta una precisión del 89% para las noticias verdaderas, dandole la etiqueta de noticias verdaderas a las que si lo son.
+* El modelo presenta un recall del 85% para las noticias falsas dejando pasar una pequeña cantidad de noticias falsas como verdaderas.
+* El modelo presenta un recall del 89% mostrando que la mayoría de las noticias verdaderas están correctamente identificadas.
+* El F1 score de las noticias falsas es del 85% y del 89% para las noticias verdaderas mostrando un balance entre la precisión y el recall en la detección de noticias falsas mostrando un muy buen rendimiento en la identificación de noticias legitimas.
+
+### Análisis de la matriz de confusión
+
+* **4,080** noticias **falsas** fueron **correctamente identificadas** como **falsas** ( **Verdaderos Negativos - TN** ).
+* **5,886** noticias **verdaderas** fueron **correctamente clasificadas** como **verdaderas** ( **Verdaderos Positivos - TP** ).
+* **746** noticias **verdaderas** fueron **clasificadas erróneamente** como **falsas** ( **Falsos Negativos - FN** ).
+* **701** noticias **falsas** fueron **clasificadas erróneamente** como **verdaderas** ( **Falsos Positivos - FP** ).
+
+### Conclusiones
+
+La red neuronal mostró un buen equilibrio y recall con una exactitud del 87.31%. Los resultados de la matriz de confusión muestra que la mayoría de noticias fueron clasificadas correctamentamente. El modelo permite identificar adecuadamente las noticias falsas lo que permite que sea implementado para ayudar a reducir la propagación de la desinformación en un contexto general. Sin embargo, al tener una cifra considerablefalsos positivos y falsos negativos, el modelo no se recomienda usar para contextos donde es crítico la identificación de noticias falsas.
+
+### ¿Cómo aportan estas métricas a los objetivos del negocio?
+
+Las métricas que se obtuveron muestran un modelo equilibrado y confiable en la detección de noticias falsas, permitiendo a la organización automatizar este proceso para reducir la propagación de desinformación.
+
+### Impacto positivo en la organización
+
+Si el modelo es implementado, este ayudaría a mejorar la confianza en la información publicada en plataformas digitales evitando la difusión de contenido engañoso y disminuyendo la carga de trabajo en los procesos de verificación que tiene que hacer el personal.
+
+### Riesgos y consideraciones
+
+El riesgo principal radica en la presencia de los falsos negativos (746 casos) lo que significa que aún hay una cantidad considerable de noticias falsas que pueden ser clasificadas erroneamente como verdaderas y difundirse.
