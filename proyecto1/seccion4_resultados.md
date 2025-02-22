@@ -1,4 +1,4 @@
-# mDescripción general de resultados
+# Descripción general de resultados
 
 ## Regresión logística
 
@@ -110,8 +110,6 @@ El  **ajuste del umbral de 0.5 a 0.6 mejoró significativamente la precisión y 
 
 ---
 
-
-
 ## **Red neuronal**
 
 Se usó una red neuronal con un umbral de **0.5** para clasificar las noticias **falsas y verdaderas**. Los resultados muestran un **buen rendimiento** con un **balance entre precisión y recall**.
@@ -185,21 +183,17 @@ En el caso puntual de este proyecto, el umbral utilizado es de 0.65.
 
 Al hacer la comparación de los umbrales, se puede ver una mejora en la precisión de noticias flasas pasando del 84% al 85% lo que indica que el modelo redujo los falsos positivos y clasificó con mayor exactitud las noticias falsas. Adicionalmente, se mejoró un poco el recall de las noticias falsas, aumentando también del 84% al 85% lo que indica que el modelo identificó mejor las noticias falsas. Sin embargo el recall de las noticias verdaderas bajó del 90% al 89% lo que nos indica que  que algunas se aumentó la cantidad de noticias verdaderas que fueron clasificadas erroneamente. La exactitud del modelo se mantuvo igual lo que indica que el modelo tiene un desempeño igual en ambos casos. El F1 score aumentó del 84% al 85% mostrando un mejor equilibrio entre precisión y recall.
 
-
 #### Conclusiones generales
 
-**¿Es este modelo adecuado?** - Sí, aunque el modelo no tiene unos resultados tan buenos como el de regresión, este tiene un buen equilibrio entre precisión y recall con una exactitud del 87.31% y un F1-score sólido lo que permite una detección confiable entre ambas clases. 
+**¿Es este modelo adecuado?** - Sí, aunque el modelo no tiene unos resultados tan buenos como el de regresión, este tiene un buen equilibrio entre precisión y recall con una exactitud del 87.31% y un F1-score sólido lo que permite una detección confiable entre ambas clases.
 
 **¿Debería ajustarse más?** - Si la prioridad es reducir la cantidad de noticias falasas no detectadas se podría bajar el umbral para mejorar el recall en la clase 0 de noticias falsas pero podría aumentar la cantidad de falsos positivos. Si la prioridad es evitar que las noticias legitimas pasen como falsas, mantener el umbral de decisión es una buena opción.
 
 **¿Es útil para la organización?** -  Sí, y aque el modelo automatiza la detección de noticias falsas reduciendo así la carga operativa en la verificación manual de noticias.
 
-
 #### Conslusiones sobre el ajuste del umbral
 
-El ajuste del umbral mejoró la precisión en la detección de noticias, reduciendo falsos positivos y evitando clasificar noticias verdaderas como falsas. Sin embargo el recall de las noticias verdaderas disminuyó levemente lo que nos indica que algunas noticias legítimas fueron clasificadas erróneamente como falsas. 
-
-
+El ajuste del umbral mejoró la precisión en la detección de noticias, reduciendo falsos positivos y evitando clasificar noticias verdaderas como falsas. Sin embargo el recall de las noticias verdaderas disminuyó levemente lo que nos indica que algunas noticias legítimas fueron clasificadas erróneamente como falsas.
 
 ## Árbol de decisión
 
@@ -260,7 +254,7 @@ Para el árbol de decisión de tipo gini con 20 niveles de profundidad los resul
 
 ### Análisis de la matriz de confusión
 
-![image.png](attachment:bd9d2c0d-d464-4b44-aee9-0c908fab53a8.png)
+![1740238542013](image/seccion4_resultados/1740238542013.png)
 
 - *3,130* noticias *falsas* fueron *correctamente identificadas* como *falsas* (*Verdaderos Negativos - TN*).
 - *6548* noticias *verdaderas* fueron *correctamente clasificadas* como *verdaderas* (*Verdaderos Positivos - TP*).
