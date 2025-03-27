@@ -290,3 +290,7 @@ El mayor riesgo el modelo es la gran cantidad de falsos positivos, pues puede si
 ## ¿Cómo ayuda esto a la organización?
 
 El análisis de las palabras más frecuentes en los títulos y descripciones de las noticias revela patrones lingüísticos clave que permiten identificar posibles noticias falsas. En los títulos, se ven términos relacionados con  figuras políticas, partidos y eventos controversiales , muchas veces acompañados de palabras como  *"nuevo"* ,  *"cambio"* , o  *"pidió"* , que pueden ser indicios de  titulares sensacionalistas o manipulativos . En las descripciones, palabras como  *"asegura"* ,  *"último"* ,  *"hecho"* ,  *"fiscalía"* , y *"justicia"* resaltan el uso de  citas de autoridad y términos jurídicos , estrategias comunes en la desinformación para  dar credibilidad a información falsa o tergiversada. Para la organización, esta información es crucial porque permite  entrenar modelos de IA más precisos , desarrollar  herramientas de detección automatizada de desinformación , y anticiparse a  tendencias de manipulación mediática . Además, facilita la creación de estrategias de mitigación contra la propagación de noticias falsas, mejorando la capacidad de análisis y respuesta ante campañas de desinformación dirigidas a la opinión pública.
+
+# Video explicativo
+
+https://uniandes-my.sharepoint.com/personal/jp_castrob1_uniandes_edu_co/_layouts/15/embed.aspx?UniqueId=a771f80d-0517-4c72-ad47-82c121269532&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create
