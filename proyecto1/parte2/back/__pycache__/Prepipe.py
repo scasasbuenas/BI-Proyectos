@@ -11,9 +11,9 @@ from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report
-from scipy.sparse import hstack
 
+from scipy.sparse import hstack
+from sklearn.metrics import accuracy_score, classification_report, f1_score, precision_score, recall_score, confusion_matrix
 class Clean:
 
     def __init__(self, is_train = False):
@@ -129,3 +129,66 @@ class Vectorize:
         X = hstack([title_trans, desc_trans])
         print("[Vectorize] Transformación terminada. Shape:", X.shape)
         return X
+
+
+
+
+class Model: 
+
+    def __init__(self):
+        self.model = LogisticRegression(max_iter=1000)
+        self.precision = None
+        self.recall = None
+        self.report = None
+        self.f1 = None
+        self.accuracy = None
+        self.conf_matrix = None
+
+    def fit(self, data, target):
+        # Separar entrenamiento y prueba
+        X_train, X_test, y_train, y_test = train_test_split(
+            data, target, test_size=0.2, random_state=42, stratify=target
+        )
+
+        # Entrenamiento del modelo
+        self.model.fit(X_train, y_train)
+
+        # Predicciones
+        y_pred = self.model.predict(X_test)
+
+        # Métricas
+        self.conf_matrix = confusion_matrix(y_test, y_pred)
+        self.accuracy = accuracy_score(y_test, y_pred)
+        self.report = classification_report(y_test, y_pred)
+        self.f1 = f1_score(y_test, y_pred, average='weighted')
+        self.recall = recall_score(y_test, y_pred, average='weighted')
+        self.precision = precision_score(y_test, y_pred, average='weighted')
+
+        # Reporte
+        print(f"[Model] Entrenamiento completado.")
+        print(f"[Model] Accuracy: {self.accuracy:.4f}")
+        print(f"[Model] F1 Score: {self.f1:.4f}")
+        print(f"[Model] Precision: {self.precision:.4f}")
+        print(f"[Model] Recall: {self.recall:.4f}")
+        print(f"[Model] Classification Report:\n{self.report}")
+        return self
+    
+    def transform(self, data):
+        return data
+
+    def predict(self, data):
+        # Predice las etiquetas
+        labels = self.model.predict(data)
+
+        # Obtiene probabilidades por clase
+        probabilities = self.model.predict_proba(data)
+
+        # Construye un DataFrame con las predicciones
+        prediction = pd.DataFrame(labels, columns=['label'])
+
+        # Agrega columnas de probabilidades por clase
+        for i in range(probabilities.shape[1]):
+            prediction[f'prob_class_{i}'] = probabilities[:, i]
+
+        print('predicciones listas')
+        return prediction
