@@ -9,4 +9,4 @@ class DataModel(BaseModel):
 
 #Esta función retorna los nombres de las columnas correspondientes con el modelo exportado en joblib.
     def columns(self):
-        return ["Titulo", "Descripcion","Label"]
+        return ["Titulo", "Descripcion", "Label"]

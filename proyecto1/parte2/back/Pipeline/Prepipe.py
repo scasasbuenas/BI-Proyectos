@@ -4,7 +4,11 @@ import re
 import unicodedata
 import nltk
 
-from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+from nltk.tokenize import word_tokenize, RegexpTokenizer
 from nltk.corpus import stopwords, wordnet
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 
@@ -14,6 +18,7 @@ from sklearn.linear_model import LogisticRegression
 
 from scipy.sparse import hstack
 from sklearn.metrics import accuracy_score, classification_report, f1_score, precision_score, recall_score, confusion_matrix
+
 class Clean:
 
     def __init__(self, is_train = False):
@@ -22,12 +27,11 @@ class Clean:
         self.lemmatizer = WordNetLemmatizer()
         self.vectorizer = TfidfVectorizer()
         self.news_df = None
-
+        self.tokenizer = RegexpTokenizer(r'\w+')  # This will split on non-word characters
 
     def remove_non_ascii(self, words):
         """Remueve caracteres no ASCII de una lista de palabras"""
         return [unicodedata.normalize('NFKD', word).encode('ascii', 'ignore').decode('utf-8', 'ignore') for word in words if word]
-
 
     def to_lower(self, words):
         """Convierte todas las palabras a minúsculas en una lista"""
@@ -61,10 +65,10 @@ class Clean:
     
     def preprocessing(self, text):
         """Aplica todas las funciones de limpieza de texto a un string"""
-        words = word_tokenize(text, language="spanish")  # Tokenizar con NLTK
+        # Using RegexpTokenizer instead of word_tokenize
+        words = self.tokenizer.tokenize(text)
         words = self.remove_non_ascii(words)
         words = self.to_lower(words)
-        words = self.remove_punctuation(words)
         words = self.remove_numbers(words)
         words = self.remove_stopwords(words)
         words = self.stem_and_lemmatize(words)

@@ -31,7 +31,7 @@ if __name__ == "__main__":
     print("¿Existe el  archivo?", os.path.exists('fake_news_spanish.csv'))
     print("[Pipeline] Pipeline Started")
     # Cargar dataset
-    df = pd.read_csv('proyecto1/parte2/back/fake_news_spanish.csv' , sep=';', encoding='utf-8')
+    df = pd.read_csv('../fake_news_spanish.csv', sep=';', encoding='utf-8')
     # Nos quedamos solo con las columnas relevantes
     df = df[["Label", "Titulo", "Descripcion"]]
     # Aseguramos que todo sea texto
