@@ -51,12 +51,22 @@ function SingleArticleAnalysis() {
       }
       
       const data = await response.json();
-      setResult(data);
+      setResult({
+        prediction: data[0],
+        probFake: data[1],
+        probLegit: data[2]
+      });
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
+  };
+
+  const getResultMessage = (prediction, probFake, probLegit) => {
+    const predictionText = prediction === 1 ? "legitimate" : "fake";
+    const mainProb = prediction === 1 ? probLegit : probFake;
+    return `This article appears to be ${predictionText} news with ${mainProb}% confidence.`;
   };
 
   return (
@@ -90,21 +100,6 @@ function SingleArticleAnalysis() {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="Label">Label:</label>
-          <input
-            type="number"
-            id="Label"
-            name="Label"
-            value={formData.Label}
-            onChange={handleChange}
-            required
-            min="0"
-            max="1"
-            placeholder="Enter 0 for fake or 1 for real"
-          />
-        </div>
-
         <button type="submit" disabled={loading}>
           {loading ? 'Analyzing...' : 'Analyze News'}
         </button>
@@ -114,8 +109,37 @@ function SingleArticleAnalysis() {
       
       {result && (
         <div className="result">
-          <h2>Analysis Result:</h2>
-          <pre>{JSON.stringify(result, null, 2)}</pre>
+          <h3>Analysis Result</h3>
+          <div className="result-card">
+            <div className="prediction-badge" data-prediction={result.prediction === 1 ? "legitimate" : "fake"}>
+              {result.prediction === 1 ? "LEGITIMATE" : "FAKE"}
+            </div>
+            <p className="confidence-text">
+              {getResultMessage(result.prediction, result.probFake, result.probLegit)}
+            </p>
+            <div className="probability-details">
+              <div className="probability-item">
+                <h4>Probability of being Fake News</h4>
+                <div className="probability-bar fake">
+                  <div 
+                    className="probability-fill" 
+                    style={{ width: `${result.probFake}%` }}
+                  />
+                  <span className="probability-text">{result.probFake}%</span>
+                </div>
+              </div>
+              <div className="probability-item">
+                <h4>Probability of being Legitimate News</h4>
+                <div className="probability-bar legitimate">
+                  <div 
+                    className="probability-fill" 
+                    style={{ width: `${result.probLegit}%` }}
+                  />
+                  <span className="probability-text">{result.probLegit}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

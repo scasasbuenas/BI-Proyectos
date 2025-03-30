@@ -105,5 +105,9 @@ def train(dataModel: DataModel):
     result = model.predict(df)
     print("Prediction result type:", type(result))
     print("Prediction result:\n", result)
-    # Extract the label from the prediction DataFrame
-    return int(result['label'].iloc[0])
+    # Extract the label and convert probabilities to percentages with 2 decimal places
+    return (
+        int(result['label'].iloc[0]), 
+        round(float(result['prob_class_0'].iloc[0] * 100), 2), 
+        round(float(result['prob_class_1'].iloc[0] * 100), 2)
+    )
