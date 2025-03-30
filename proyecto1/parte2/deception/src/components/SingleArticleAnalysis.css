@@ -1,67 +1,60 @@
-.App {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  display: none;
-}
-
-.App-main {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1200px;
+.single-article-analysis {
+  max-width: 800px;
   margin: 0 auto;
-  width: 100%;
+  padding: 2rem;
 }
 
-.deception-form {
+.single-article-analysis h2 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.single-article-analysis p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.single-article-analysis .deception-form {
   background: white;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 0 auto;
 }
 
-.form-group {
+.single-article-analysis .form-group {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.single-article-analysis .form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: #2c3e50;
 }
 
-.form-group input,
-.form-group textarea {
+.single-article-analysis .form-group input,
+.single-article-analysis .form-group textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
-.form-group textarea {
+.single-article-analysis .form-group input:focus,
+.single-article-analysis .form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.single-article-analysis .form-group textarea {
   min-height: 150px;
   resize: vertical;
 }
 
-button {
+.single-article-analysis button {
+  width: 100%;
   background-color: #3498db;
   color: white;
   padding: 0.75rem 1.5rem;
@@ -72,16 +65,16 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.single-article-analysis button:hover {
   background-color: #2980b9;
 }
 
-button:disabled {
+.single-article-analysis button:disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
 }
 
-.error {
+.single-article-analysis .error {
   color: #e74c3c;
   padding: 1rem;
   margin: 1rem 0;
@@ -89,7 +82,7 @@ button:disabled {
   border-radius: 4px;
 }
 
-.result {
+.single-article-analysis .result {
   margin-top: 2rem;
   padding: 1.5rem;
   background: white;
@@ -97,28 +90,18 @@ button:disabled {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.result h2 {
+.single-article-analysis .result h2 {
   margin-top: 0;
   color: #2c3e50;
 }
 
-.result pre {
+.single-article-analysis .result pre {
   background: #f8f9fa;
   padding: 1rem;
   border-radius: 4px;
   overflow-x: auto;
   margin: 0;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  font-family: monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+} 
